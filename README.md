@@ -1,36 +1,109 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# News aggregator Application Docker Setup
 
-## Getting Started
+## Prerequisites
 
-First, run the development server:
+Before you begin, ensure that you have the following software installed on your machine:
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+- [Docker](https://www.docker.com/get-started)
+- Node.js and npm (Node Package Manager) node 20
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Build Docker Image
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+1. Open a terminal in the root directory of your News aggregator project.
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+2. Run the following command to build the Docker image. Replace `<your-image-name>` with a name for your Docker image.
 
-## Learn More
+    ```bash
+    docker build -t <your-image-name> .
+    ```
 
-To learn more about Next.js, take a look at the following resources:
+    This command compiles your News aggregator application and creates a Docker image with the specified name.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Run Docker Container
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+3. Once the Docker image is built, start a Docker container with the following command. Replace `<your-container-name>` with a name for your Docker container.
 
-## Deploy on Vercel
+    ```bash
+    docker run -p 8080:3000 --name <your-container-name> <your-image-name>
+    ```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+    - The `-p` option maps port 3000 from the container to port 8080 on your host machine. Adjust the ports as needed.
+    - The `--name` option assigns a name to your container.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+## Access Your Application
+
+4. Open a web browser and navigate to [http://localhost:8080](http://localhost:8080) to access your News aggregator application running within the Docker container.
+
+## Additional Notes
+
+
+
+- To stop the Docker container, use the following command:
+
+    ```bash
+    docker ps 
+    ```
+    then check the name for docker image.
+
+    then use below code paste the name in place of your-container-name
+
+    ```bash
+    docker stop <your-container-name>
+    ```
+
+- To remove the Docker container, use the following command:
+
+    ```bash
+    docker rm <your-container-name>
+    ```
+
+- To remove the Docker image, use the following command:
+
+    ```bash
+    docker rmi <your-image-name>
+    ```
+
+---
+
+----------------------------------------------------------------------------------------------------------------------------------------------------
+
+# Project Approach
+
+## 1.Requirements Analysis:
+ a. Prioritized features like article search, filtering, personalized news feed, and mobile responsiveness.
+
+## 2.Technology Selection:
+
+   React.js: Utilized Next.js for building a dynamic and interactive user interface.
+
+   Css: Tailwind css
+
+## Data Source Selection:
+   a. The Guardian
+   b. News api
+   c. New York Times
+   ===>Implement a service layer to fetch and normalize data from selected APIs.
+
+## Design Planning:
+
+   Wireframes: https://www.figma.com/file/VvkWsgHAemCEFNWfyjKvXW/news-aggregator?mode=dev
+
+## Project Setup:
+ Next.js , tailwind, shadcn,axios
+
+## Implement Core Features:
+   a. Article Search and Filtering:
+   b. Personalized News Feed
+   c. Data Fetching
+
+## Mobile Responsiveness
+
+## Docker Containerization
+
+## Code Quality and Best Practices
+
+## Testing
+
+
+ 
+
